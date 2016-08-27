@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FablousVR.iml" filepath="$PROJECT_DIR$/FablousVR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VrViewSample/VrViewSample.iml" filepath="$PROJECT_DIR$/VrViewSample/VrViewSample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vrview/vrview.iml" filepath="$PROJECT_DIR$/vrview/vrview.iml" />
+    </modules>
+  </component>
+</project>

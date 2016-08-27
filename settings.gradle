@@ -1,0 +1,12 @@
+//1
+//include ':injecteventbus', ':qiniu'
+//include ':klob-sdk-core',
+include    ':vrview'
+
+//2/
+//include ':klob-sdk-ui'
+
+
+
+
+include ':VrViewSample'    //2
