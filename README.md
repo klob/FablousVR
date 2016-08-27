@@ -2,6 +2,14 @@
 # Simple VrView Implement
 Providing a library which can help you implement a VrView easily.  
 
+# Sample
+<iframe src="" ></iframe>
+<iframe width="854" height="480" src="VrDemo.mp4" frameborder="0" allowfullscreen></iframe>
+
+<video id="video" controls="" preload="none" >
+      <source id="mp4" src="VrDemo.mp4" type="video/mp4">
+</video>
+
 # Usage
 VrLayout  
 ```xml
