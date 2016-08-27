@@ -4,11 +4,7 @@ Providing a library which can help you implement a VrView easily.
 
 # Sample
 
-<iframe width="854" height="480" src="https://github.com/klob/FablousVR/blob/master/VrDemo.mp4" frameborder="0" allowfullscreen></iframe>
-
-<video id="video" controls="" preload="none" >
-      <source id="mp4" src="https://github.com/klob/FablousVR/blob/master/VrDemo.mp4" type="video/mp4">
-</video>
+see the mp4 [https://github.com/klob/FablousVR/blob/master/VrDemo.mp4](https://github.com/klob/FablousVR/blob/master/VrDemo.mp4)
 
 # Usage
 VrLayout  
