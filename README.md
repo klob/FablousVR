@@ -3,7 +3,7 @@
 Providing a library which can help you implement a VrView easily.  
 
 # Sample
-<iframe height=500 width=500 src="VrView.gif">
+![image](VrView.gif) 
 # Usage
 VrLayout  
 ```xml
