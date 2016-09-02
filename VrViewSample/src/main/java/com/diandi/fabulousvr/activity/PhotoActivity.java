@@ -24,7 +24,7 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
     ImageView img2;
     ImageView img3;
     ImageView img4;
-    ImageView img6;
+    ImageView img5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
         img2 = (ImageView) findViewById(R.id.img_p2);
         img3 = (ImageView) findViewById(R.id.img_p3);
         img4 = (ImageView) findViewById(R.id.img_p4);
-        img6 = (ImageView) findViewById(R.id.img_p6);
+        img5 = (ImageView) findViewById(R.id.img_p5);
         mPhotoProvider = new PhotoProvider(this, new PhotoProvider.CameraCallBack() {
             @Override
             public void cameraFinish(String filePath) {
@@ -59,7 +59,7 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
         img2.setOnClickListener(this);
         img3.setOnClickListener(this);
         img4.setOnClickListener(this);
-        img6.setOnClickListener(this);
+        img5.setOnClickListener(this);
     }
 
     PhotoProvider mPhotoProvider;

@@ -1,10 +1,14 @@
 package com.diandi.fabulousvr.activity;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 
 import com.diandi.fabulousvr.R;
+import com.diandi.klob.sdk.photo.BitmapDecoder;
 import com.diandi.klob.sdk.ui.common.KActivity;
+import com.diandi.klob.sdk.util.FileUtils;
+import com.diandi.klob.sdk.util.photo.ScreenUtils;
 
 
 /**
@@ -19,24 +23,33 @@ import com.diandi.klob.sdk.ui.common.KActivity;
 
 /**
  * 基础Activity类
- * */
+ */
 public class BaseActivity extends KActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    /** 初始化View*/
+
+    /**
+     * 初始化View
+     */
     @Override
     public void initViews() {
 
     }
-    /** 初始化数据*/
+
+    /**
+     * 初始化数据
+     */
     @Override
     public void init() {
 
     }
-    /** 绑定事件*/
+
+    /**
+     * 绑定事件
+     */
     @Override
     public void bindEvent() {
 
@@ -50,5 +63,14 @@ public class BaseActivity extends KActivity {
     @Override
     public int getColor() {
         return getColorPrimary();
+    }
+
+    public Bitmap getBitmapFromUri(Uri src) {
+        if (src == null) {
+            return null;
+        }
+        String uri = FileUtils.getPath(mContext, src);
+        Bitmap bitmap = BitmapDecoder.decodeSampledBitmapFromFile(uri, ScreenUtils.getScreenWidth(), ScreenUtils.getScreenHeight());
+        return bitmap;
     }
 }

@@ -35,7 +35,7 @@
         android:scaleType="fitXY"
         android:src="@drawable/p1"/>
     <ImageView
-        android:id="@+id/img_p6"
+        android:id="@+id/img_p5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/blue"

@@ -30,7 +30,7 @@ public class SplashActivity extends BaseActivity {
                 super.handleMessage(msg);
                 if (msg.what == 0) {
                     startAnimActivity(new Intent(mContext,PhotoActivity.class));
-                finish();
+                     finish();
                 }
             }
         };

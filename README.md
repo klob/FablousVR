@@ -22,7 +22,7 @@ set two renders for the VrView
 
 		mVrRender = new VrRender(this, bitmap);
         mVrRender2 = new VrRender(this, bitmap);
-        mGlSurfaceView.setRender(mVrRender,mVrRender2);
+        mVrLayout.setRender(mVrRender,mVrRender2);
 
 ```
 and then call
@@ -31,8 +31,8 @@ and then call
 
     protected void onResume() {
         super.onResume();
-        if (null != mGlSurfaceView) {
-            mGlSurfaceView.onResume();
+        if (null != mVrLayout) {
+            mVrLayout.onResume();
         }
 
     }
@@ -40,8 +40,8 @@ and then call
     @Override
     protected void onPause() {
         super.onPause();
-        if (null != mGlSurfaceView) {
-            mGlSurfaceView.onPause();
+        if (null != mVrLayout) {
+            mVrLayout.onPause();
         }
     }
 ```

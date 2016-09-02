@@ -36,16 +36,10 @@ public class VrActivity2Single extends BaseActivity {
                 int id = bundle.getInt("src");
                 mVrRender = new VrRender(this, id);
             } else if ("uri".equals(bundle.getString("type"))) {
-                String uri = FileUtils.getPath(mContext, (Uri) bundle.getParcelable("src"));
-                Bitmap bitmap = BitmapDecoder.decodeSampledBitmapFromFile(uri, ScreenUtils.getScreenWidth(), ScreenUtils.getScreenHeight());
-                if (bitmap == null) {
-                    if ((bundle.getParcelable("src")) != null) {
-                        bitmap = BitmapDecoder.decodeSampledBitmapFromFile(((Uri) bundle.getParcelable("src")).getPath(), ScreenUtils.getScreenWidth(), ScreenUtils.getScreenHeight());
-                    }
-                }
-                if (bitmap == null) {
-                    ShowToast("ERROR");
-                    finish();
+                Bitmap bitmap=  getBitmapFromUri((Uri) bundle.getParcelable("src"));
+                if(bitmap==null)
+                {
+                    return;
                 }
                 mVrRender = new VrRender(this, bitmap);
             }

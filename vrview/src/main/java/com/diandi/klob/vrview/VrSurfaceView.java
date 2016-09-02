@@ -14,7 +14,6 @@ import android.util.AttributeSet;
  * *******************************************************************************
  */
 public class VrSurfaceView extends GLSurfaceView {
-    Context mContext;
 
     public VrSurfaceView(Context context) {
         super(context);
@@ -31,7 +30,6 @@ public class VrSurfaceView extends GLSurfaceView {
         setEGLContextClientVersion(2);
         setRenderer(render);
         mVrHelper = new VrHelper(context, render);
-
     }
     public void onResume() {
         if (mVrHelper != null) {

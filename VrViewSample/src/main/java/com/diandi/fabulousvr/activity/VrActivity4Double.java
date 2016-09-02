@@ -5,9 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.diandi.fabulousvr.R;
-import com.diandi.klob.sdk.photo.BitmapDecoder;
-import com.diandi.klob.sdk.util.FileUtils;
-import com.diandi.klob.sdk.util.photo.ScreenUtils;
 import com.diandi.klob.vrview.VrRender;
 import com.diandi.klob.vrview.VrSurfaceView;
 
@@ -42,11 +39,8 @@ public class VrActivity4Double extends BaseActivity {
                 mVrRender = new VrRender(this, id);
                 mVrRender2 = new VrRender(this, id);
             } else if ("uri".equals(bundle.getString("type"))) {
-                String uri = FileUtils.getPath(mContext, (Uri) bundle.getParcelable("src"));
-                Bitmap bitmap = BitmapDecoder.decodeSampledBitmapFromFile(uri, ScreenUtils.getScreenWidth(), ScreenUtils.getScreenHeight());
-                Bitmap bitmap2 = BitmapDecoder.decodeSampledBitmapFromFile(uri, ScreenUtils.getScreenWidth(), ScreenUtils.getScreenHeight());
-
-
+                Bitmap bitmap =  getBitmapFromUri((Uri) bundle.getParcelable("src"));
+                Bitmap bitmap2 =   getBitmapFromUri((Uri) bundle.getParcelable("src"));
                 mVrRender = new VrRender(this, bitmap);
                 mVrRender2 = new VrRender(this, bitmap2);
             }

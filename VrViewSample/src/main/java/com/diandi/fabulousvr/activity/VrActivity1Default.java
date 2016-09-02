@@ -12,9 +12,6 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 
 import com.diandi.fabulousvr.R;
-import com.diandi.klob.sdk.photo.BitmapDecoder;
-import com.diandi.klob.sdk.util.FileUtils;
-import com.diandi.klob.sdk.util.photo.ScreenUtils;
 import com.diandi.klob.vrview.VrRender;
 
 
@@ -29,16 +26,35 @@ public class VrActivity1Default extends BaseActivity {
     private float mPreviousY;
     private float mPreviousX;
     private SensorManager sensorManager;
-    private Sensor sensor;
-
 
     private float X1 = 0;
     private float Y1 = 0;
-    private float Z1 = 0;
+    private SensorEventListener sensorEventListener = new SensorEventListener() {
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            // 传感器信息改变时执行该方法
+            float[] values = event.values;
+            float x = values[0]; // x轴方向的重力加速度，向右为正
+            float y = values[1]; // y轴方向的重力加速度，向前为正
+            float z = values[2];// z轴方向的重力加速度，向上为正
+
+            X1 = x;
+            Y1 = y;
 
 
-    private float zero_limit = 0.05f;
-    private float v_limit = 1;
+            mVrRender.yAngle = mVrRender.yAngle + X1 / 4;
+            mVrRender.xAngle = mVrRender.xAngle - Y1 / 4;
+            mVrRender2.yAngle = mVrRender2.yAngle + X1 / 4;
+            mVrRender2.xAngle = mVrRender2.xAngle - Y1 / 4;
+
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +74,10 @@ public class VrActivity1Default extends BaseActivity {
                 mVrRender = new VrRender(this, id);
                 mVrRender2 = new VrRender(this, id);
             } else if ("uri".equals(bundle.getString("type"))) {
-                String uri = FileUtils.getPath(mContext, (Uri) bundle.getParcelable("src"));
-                Bitmap bitmap = BitmapDecoder.decodeSampledBitmapFromFile(uri, ScreenUtils.getScreenWidth(), ScreenUtils.getScreenHeight());
-                if (bitmap == null) {
-                    if (((Uri) bundle.getParcelable("src")) != null) {
-                        bitmap = BitmapDecoder.decodeSampledBitmapFromFile(((Uri) bundle.getParcelable("src")).getPath(), ScreenUtils.getScreenWidth(), ScreenUtils.getScreenHeight());
-                    }
-                }
-                if (bitmap == null) {
-                    ShowToast("ERROR");
-                    finish();
+                Bitmap bitmap=  getBitmapFromUri((Uri) bundle.getParcelable("src"));
+                if(bitmap==null)
+                {
+                    return;
                 }
                 //  Drawable drawable =new BitmapDrawable(bitmap);
                 mVrRender = new VrRender(this, bitmap);
@@ -79,44 +89,6 @@ public class VrActivity1Default extends BaseActivity {
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShowToast("Using GLSurfaceView");
     }
-
-
-    private SensorEventListener sensorEventListener = new SensorEventListener() {
-
-        @Override
-        public void onSensorChanged(SensorEvent event) {
-            // 传感器信息改变时执行该方法
-            float[] values = event.values;
-            float x = values[0]; // x轴方向的重力加速度，向右为正
-            float y = values[1]; // y轴方向的重力加速度，向前为正
-            float z = values[2];// z轴方向的重力加速度，向上为正
-
-            X1 = x;
-            Y1 = y;
-            Z1 = z;
-
-
-//
-
-            mVrRender.yAngle = mVrRender.yAngle + X1 / 4;
-            mVrRender.xAngle = mVrRender.xAngle - Y1 / 4;
-            mVrRender2.yAngle = mVrRender2.yAngle + X1 / 4;
-            mVrRender2.xAngle = mVrRender2.xAngle - Y1 / 4;
-
-            //显示移动后的图像
-
-            //更新速度
-
-
-            //System.out.println("X  : "+X+"     Y:   "+Y+"    Z  :"+ Z);
-
-        }
-
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-        }
-    };
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
